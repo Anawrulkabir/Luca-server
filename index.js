@@ -91,6 +91,7 @@ async function run() {
     const roomsCollection = db.collection('rooms')
     const usersCollection = db.collection('users')
     const bookingsCollection = db.collection('bookings')
+    const packagesCollection = db.collection('packages')
     // verify admin middleware
     const verifyAdmin = async (req, res, next) => {
       console.log('hello')
@@ -271,6 +272,21 @@ async function run() {
       const id = req.params.id
       const query = { _id: new ObjectId(id) }
       const result = await roomsCollection.findOne(query)
+      res.send(result)
+    })
+
+    // Get all packages
+    app.get('/packages', async (req, res) => {
+      const query = {}
+      const result = await packagesCollection.find(query)
+      res.send(result)
+    })
+
+    // Get a package details form db using _id
+    app.get('/package/details/:id', async (req, res) => {
+      const id = req.params.id
+      const query = { _id: new ObjectId(id) }
+      const result = await packagesCollection.findOne(query)
       res.send(result)
     })
 
