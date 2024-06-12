@@ -271,7 +271,7 @@ async function run() {
     app.get('/room/:id', async (req, res) => {
       const id = req.params.id
       const query = { _id: new ObjectId(id) }
-      const result = await roomsCollection.findOne(query)
+      const result = await roomsCollection.findOne(query).toArray()
       res.send(result)
     })
 
