@@ -92,6 +92,7 @@ async function run() {
     const usersCollection = db.collection('users')
     const bookingsCollection = db.collection('bookings')
     const packagesCollection = db.collection('packages')
+    const tourGuideCollection = db.collection('tour-guide')
     // verify admin middleware
     const verifyAdmin = async (req, res, next) => {
       console.log('hello')
@@ -271,14 +272,14 @@ async function run() {
     app.get('/room/:id', async (req, res) => {
       const id = req.params.id
       const query = { _id: new ObjectId(id) }
-      const result = await roomsCollection.findOne(query).toArray()
+      const result = await roomsCollection.findOne(query)
       res.send(result)
     })
 
     // Get all packages
     app.get('/packages', async (req, res) => {
       const query = {}
-      const result = await packagesCollection.find(query)
+      const result = await packagesCollection.find(query).toArray()
       res.send(result)
     })
 
@@ -502,6 +503,15 @@ async function run() {
         guestSince: timestamp,
       })
     })
+
+    // Tour guide section
+    // 1. Get all the tour guide
+    app.get('/all-tour-guide', async (req, res) => {
+      const query = {}
+      const result = await tourGuideCollection.find(query).toArray()
+      res.send(result)
+    })
+    // 2. register as a tour guide
 
     // Send a ping to confirm a successful connection
     await client.db('admin').command({ ping: 1 })
