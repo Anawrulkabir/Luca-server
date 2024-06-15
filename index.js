@@ -515,7 +515,14 @@ async function run() {
       const result = await tourGuideCollection.find(query).toArray()
       res.send(result)
     })
-    // 2. register as a tour guide
+    // 2. Get single guide info by id
+    app.get('/tourGuide/:id', async (res, res) => {
+      const id = req.params.id
+      const query = { _id: new ObjectId(id) }
+      const result = await tourGuideCollection.findOne(query)
+      res.send(result)
+    })
+    // 3. register as a tour guide
 
     // Send a ping to confirm a successful connection
     await client.db('admin').command({ ping: 1 })
