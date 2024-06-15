@@ -19,8 +19,10 @@ const corsOptions = {
   ],
   credentials: true,
   optionSuccessStatus: 200,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }
 app.use(cors(corsOptions))
+app.options('', cors(corsOptions))
 
 app.use(express.json())
 app.use(cookieParser())
@@ -516,7 +518,7 @@ async function run() {
       res.send(result)
     })
     // 2. Get single guide info by id
-    app.get('/tourGuide/:id', async (res, res) => {
+    app.get('/tourGuideDetails/:id', async (req, res) => {
       const id = req.params.id
       const query = { _id: new ObjectId(id) }
       const result = await tourGuideCollection.findOne(query)
