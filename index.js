@@ -99,6 +99,7 @@ async function run() {
     const bookingsCollection = db.collection('bookings')
     const packagesCollection = db.collection('packages')
     const tourGuideCollection = db.collection('tour-guide')
+    const wishlistCollection = db.collection('wishlists')
     // verify admin middleware
     const verifyAdmin = async (req, res, next) => {
       console.log('hello')
@@ -525,6 +526,13 @@ async function run() {
       res.send(result)
     })
     // 3. register as a tour guide
+
+    //  Packages dealing section
+    app.post('/addToWishlist', async (req, res) => {
+      const data = req.body
+      const result = await wishlistCollection.insertOne(data)
+      res.send(result)
+    })
 
     // Send a ping to confirm a successful connection
     await client.db('admin').command({ ping: 1 })
