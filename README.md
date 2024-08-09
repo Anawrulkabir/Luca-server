@@ -26,7 +26,7 @@ To configure the necessary environment variables, follow these steps:
 
 1. **Create the `.env` file:**
 
-   Inside the `luca-backend` directory, create a file named `.env`.
+   Inside the `Luca-server` directory, create a file named `.env`.
 
    ```bash
    touch .env
