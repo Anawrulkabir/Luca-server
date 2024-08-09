@@ -16,7 +16,7 @@ Ensure you have the following installed on your machine:
 Clone the repository from GitHub and navigate to the project directory:
 
 ```bash
-git clone https://github.com/anawrulkabir/Luca-server.git
+git clone https://github.com/Anawrulkabir/Luca-server.git
 cd Luca-server
 ```
 
